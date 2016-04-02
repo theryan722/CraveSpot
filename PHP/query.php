@@ -17,11 +17,11 @@ if ($choices > 0) {
 	}
 
 	<!-- Get the id of the new group -->
-	$mydata["id"] = $_GET['id'];
+	$id = $_GET['id'];
 
 
 	<!-- Name of the file to be written to-->
-	$filename = $mydata["id"] . ".txt";
+	$filename = $id . ".txt";
 
 	<!-- Replace the templateurl with the real url later-->
 	$abpath = "templateurl/engine/groups/" . $filename; 
@@ -30,12 +30,10 @@ if ($choices > 0) {
 	$file = fopen($abpath, "a+");
 
 	<!-- Append and start writing in selections-->
-	fwrite($file, $mydata["id"]);
 
 	while ($key = current($mydata)) {
-		if ($key != 'id') {
-			fwrite($file, $mydata[$key]. "|");
-		}
+		fwrite($file, $mydata[$key]. "|");
+		
 	}
 
 	<!-- not sure if newline is needed -->
