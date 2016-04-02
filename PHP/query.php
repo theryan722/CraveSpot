@@ -1,4 +1,6 @@
-$mydata = array("id" =>'', choice1" => '', "choice2" => '', "choice3" => '', "choide4" => '', 
+<?php
+
+$mydata = array("id" =>'', "choice1" => '', "choice2" => '', "choice3" => '', "choice4" => '', 
 				"choice5" => '', "choice6" => ''); 
 
 <!-- Get the id of the new group -->
@@ -24,8 +26,7 @@ $file = fopen($filename, "a");
 
 <!-- Append a new line to file and start writing in selections-->
 fwrite($file, "\n"); 
+fwrite($file, json_encode($mydata));
 
-foreach ($mydata as $item) {
-	fwrite($item . "|")
-}
+?>
 
