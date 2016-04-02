@@ -1,3 +1,4 @@
+<!-- To record the queries sent by the users -->
 <?php
 
 <!-- Retrieves number of choices user picked --> 
