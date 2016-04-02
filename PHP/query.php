@@ -1,35 +1,50 @@
 <?php
 
-$mydata = array("id" =>'', "choice1" => '', "choice2" => '', "choice3" => '', "choice4" => '', 
-				"choice5" => '', "choice6" => ''); 
+<!-- Retrieves number of choices user picked --> 
+$choices = count($_GET); 
 
-<!-- Get the id of the new group -->
-$mydata["id"] = $_GET["id"]; 
+if ($choices > 0) {
+	$keys = array_keys($_GET); 
+	$mydata = (); 
 
-<!-- Set the values of choices 1 - 6-->
-for ($i = 1; $i <= 6; $i++) {
-	$temp = 'choice' . $i; 
-	$mydata[$temp] = $_GET[$temp]; 
+	<!-- Create an associative array of key value pairs that are not the id -->
+	foreach ($keys as $item) {
+		$temp = strtolower($item);
+		if ($temp != 'id') {
+			$mydata[$temp] = strtolower($_GET[$item]); 
+		}
+	}
 
+	<!-- Get the id of the new group -->
+	$mydata["id"] = $_GET['id'];
+
+
+	<!-- Name of the file to be written to-->
+	$filename = $mydata["id"] . ".txt";
+
+	<!-- Replace the templateurl with the real url later-->
+	$abpath = "templateurl/engine/groups/" . $filename; 
+	
+	<!-- Opens/create a new file with $abpath -->
+	$file = fopen($abpath, "a+");
+
+	<!-- Append and start writing in selections-->
+	fwrite($file, $mydata["id"]);
+
+	while ($key = current($mydata)) {
+		if ($key != 'id') {
+			fwrite($file, $mydata[$key]. "|");
+		}
+	}
+
+	<!-- not sure if newline is needed -->
+	fwrite($file, "\n");
+	fclose($file);
+
+} else {
+	echo "No arguments were sent\n";
 }
-
-<!-- Name of the file to be written to-->
-$filename = $mydata["id"] . ".txt";
-
-<!-- Replace the templateurl with the real url later-->
-$abpath = "templateurl/engine/groups/" . $filename; 
-$file; 
-
-<!-- Check to see if the file exists, if not create a new one-->
-if (!file_exists($abpath)) {
-	$file = fopen($abpath, "a"); 
-}
-
-$file = fopen($abpath, "a");
-
-<!-- Append a new line to file and start writing in selections-->
-fwrite($file, "\n"); 
-fwrite($file, json_encode($mydata));
 
 ?>
 
+<!-- sample url:   cravespace.com/query.php?id=12345&choice1 = "pizza"&choice2 = "cake"&choice3 = 5 ... etc -->
