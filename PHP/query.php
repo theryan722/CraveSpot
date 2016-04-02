@@ -14,15 +14,18 @@ for ($i = 1; $i <= 6; $i++) {
 }
 
 <!-- Name of the file to be written to-->
-$filename = $mydata["id"] . "txt";
+$filename = $mydata["id"] . ".txt";
+
+<!-- Replace the templateurl with the real url later-->
+$abpath = "templateurl/engine/groups/" . $filename; 
 $file; 
 
 <!-- Check to see if the file exists, if not create a new one-->
-if (!file_exists($filename)) {
-	$file = fopen($filename, "a"); 
+if (!file_exists($abpath)) {
+	$file = fopen($abpath, "a"); 
 }
 
-$file = fopen($filename, "a");
+$file = fopen($abpath, "a");
 
 <!-- Append a new line to file and start writing in selections-->
 fwrite($file, "\n"); 
