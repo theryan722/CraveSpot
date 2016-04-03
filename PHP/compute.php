@@ -10,11 +10,13 @@ if (! $file == false) {
 		$str = str_replace("\n", '', $line);
 		$array = explode("|", $str);
 	  	foreach ($array as $ind){
-		    	if (isset($total[$ind])) {
-		    		$total[$ind]++; 
-		    	} else {
-		    		$total[$ind] = 1;
-		    	}
+	  		if ($ind != "") {
+			    	if (isset($total[$ind])) {
+			    		$total[$ind]++; 
+			    	} else {
+			    		$total[$ind] = 1;
+			    	}
+	  		}
 	  	}
 	}
   	fclose($file);
