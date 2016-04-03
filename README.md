@@ -1,4 +1,4 @@
-# CraveSpot
+![CraveSpot](https://raw.githubusercontent.com/theryan722/CraveSpot/master/logo1.png)
 HackNY 2016 Submission
 
 # What is it?
