@@ -35,8 +35,7 @@ if ($bool) {
   $json = file_get_contents("https://api.foursquare.com/v2/venues/explore?client_id=" . $client_id . "&client_secret=" . $client_secret . "&v=20160301&ll=40.7286679,-73.9956593&query=" . $keys);
   $js = json_decode($json,true);
   $query = $js['response']['groups'][0]['items'][0]['venue'];
-  //$resp = $js['response']['groups'][0]['items'][0]['venue']['name'] . "|" . $js['response']['groups'][0]['items'][0]['venue']['location']['formattedAddress'][0] . $js['response']['groups'][0]['items'][0]['venue']['location']['formattedAddress'][1];
-  $resp = $query['name'] . "|" . $query['location']['formattedAddress'][0] . $query['location']['formattedAddress'][1]
+  $resp = $query['name'] . "|" . $query['location']['formattedAddress'][0] . $query['location']['formattedAddress'][1];
   $fp = fopen("groups/" . $_GET['id'] . ".response",  "w"); 
   fwrite($fp, $resp);
   echo "COMPUTED";
