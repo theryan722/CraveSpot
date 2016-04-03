@@ -22,7 +22,7 @@ if (! $file == false) {
   	fclose($file);
 	$high = 0; 
 	foreach ($total as $key => $value) {
-	  	if ($value > $high && (strpos($total[$keys], $total[$key]) != false)) {
+	  	if ($value > $high) {
 	    	$high = $value; 
 	    	$keys = $key;
 	  	}
