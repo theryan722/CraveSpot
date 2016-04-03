@@ -5,3 +5,5 @@ HackNY 2016 Submission
 Check out our DevPost! 
 http://devpost.com/software/cravespot-qknhbd#updates
 
+# Download
+Visit the [releases](https://github.com/theryan722/CraveSpot/releases) page to download.
