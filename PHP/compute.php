@@ -1,63 +1,43 @@
-<!-- Opens up the local file and returns back the queries with the most searhes -->
 <?php
-
-<!-- File url may be changed later -->
-$filename = "/groups/" . $_GET["id"] . ".txt";
-
-$file = fopen($filename, "a+") or die echo "File was not opened\n";
-
-if (filesize($file) == 0) {
-	echo "There is no data in this file\n";
-}
-
-<!-- Hashtable to keep track of what foods were requested-->
-$choices = ();
-
-while (($line = fgets($file)) != EOF) {
-	$array = explode("|", $line);
-
-	<!--  Iterates through every line and increments their numerical value in $choices-->
-	foreach ($array as $word) {
-		if ($word != " ") {
-			$choices[$word]++;
-		}
+$filename = "groups/" . $_GET["id"] . ".txt";
+$file = fopen($filename, "r");
+$bool = false;
+$keys = "";
+if (! $file == false) {
+	$data = fread($file,filesize($filename)); 
+	$total = array();
+	foreach (new SplFileObject($filename) as $line) {
+		$str = str_replace("\n", '', $line);
+		$array = explode("|", $str);
+  	foreach ($array as $ind){
+    	if (isset($total[$ind])) {
+    		$total[$ind]++; 
+    	} else {
+    		$total[$ind] = 1;
+    	}
+  	}
 	}
-}
-
-<!-- This variable will store the query that is most requested -->
-$most_requested; 
-
-while ($key = current($choices)) {
-	if ($choices[$key] > $most_requested) {
-		$most_requested = $choices[$key]; 
+  fclose($file);
+	$high = 0; 
+	foreach ($total as $key => $value) {
+  	if ($value > $high) {
+    	$high = $value; 
+    	$keys = $key;
+  	}
 	}
+  $bool = true;
+	}	else{
+ 		echo "Group does not exist"; 
 }
-
-<!-- Retrieving popular restaurants near the area (debatable)-->
-$client_id = "MZBXZQHK3HDVZXRJQN3GLZQ3FI5W2XNRUEYMUZIFYKQWUVN0"; 
-$client_secret = "3HPKD4GEX3O0H4QFDBK5M4THJSKDZFI24KKXHOKWE1PQAQYY";
-
-$json = file_get_contents("https://api.foursquare.com/v2/venues/explore
-  						  ?client_id=" . $client_id . 
-  						  "&client_secret=" . $client_secret . 
-						  "&v=20160301
-						  &ll=40.7,-74
-						  &query=" . $most_requested);
-
-$restaurant_info = json_decode($json); 
-
-<!-- Retrieving venue name from json string-->
-$venue = $restaurant_info->response->venues[0]; 
-$name = $venue->name; 
-$number = $venue->contact->formattedPhone; 
-$location;
-<!-- Concatanating address-->
-foreach ($venue->location->formattedAddress as $item) {
-	$location = $location . $item;
+if ($bool) {
+  $client_id = "MZBXZQHK3HDVZXRJQN3GLZQ3FI5W2XNRUEYMUZIFYKQWUVN0"; 
+  $client_secret = "3HPKD4GEX3O0H4QFDBK5M4THJSKDZFI24KKXHOKWE1PQAQYY";
+  $json = file_get_contents("https://api.foursquare.com/v2/venues/explore?client_id=" . $client_id . "&client_secret=" . $client_secret . "&v=20160301&ll=40.7286679,-73.9956593&query=" . $keys);
+	$js = json_decode($json,true);
+  $resp = $js['response']['groups'][0]['items'][0]['venue']['name'] . "|" . $js['response']['groups'][0]['items'][0]['venue']['location']['formattedAddress'][0] . $js['response']['groups'][0]['items'][0]['venue']['location']['formattedAddress'][1];
+  $fp = fopen("groups/" . $_GET['id'] . ".response",  "w"); 
+  fwrite($fp, $resp);
+  echo "COMPUTED";
+  fclose($fp); 
 }
-$distance = $venue->location->distance;
-
-
-$venue_info = ($name, $number, $location);
-
 ?>
