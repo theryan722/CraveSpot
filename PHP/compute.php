@@ -10,9 +10,28 @@ if (filesize($file) == 0) {
 	echo "There is no data in this file\n";
 }
 
+<!-- Hashtable to keep track of what foods were requested-->
+$choices = ();
 
+while (($line = fgets($file)) != EOF) {
+	$array = explode("|", $line);
 
+	<!--  Iterates through every line and increments their numerical value in $choices-->
+	foreach ($array as $word) {
+		if ($word != " ") {
+			$choices[$word]++;
+		}
+	}
+}
 
+<!-- This variable will store the query that is most requested -->
+$most_requested; 
+
+while ($key = current($choices)) {
+	if ($choices[$key] > $most_requested) {
+		$most_requested = $choices[$key]; 
+	}
+}
 
 
 ?>
