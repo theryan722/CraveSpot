@@ -1,11 +1,28 @@
-h1 {
+h1{
+color:#DB7272;
+font-size: 72px;
+text-shadow:#F0F0F0 1px 2px 2px;
+}
+
+b {
 color:#DB7272;
 }
+
+.content {
+position: fixed;
+text-align: center;
+margin-top: 5%;
+margin-left: 25%;
+width: 50%;
+}
+
 
 body {
 text-align: center;
 font-family: century gothic;
-background-image: url("subtle_dots.png");}
+background-image: url("subtle_dots.png");
+color: #525657;}
+
 img {
 width: 200px;
 height: 200px;
@@ -18,26 +35,17 @@ box-shadow: 1px 1px 3px #C2C2C2;
 img:hover{
 opacity:0.8;}
 
-
-
-#description {
-width: 50%;
+#descriptionbox{
+width: 27%;
 text-align: center;
-<!--border: 1px solid black;-->
-color: #919191;
-position: fixed;
-margin-left: 25%;
+color: #525657;
 float: left;
-margin-top: 2%;
 }
 
 #navbox {
-margin-top: 10%;
-margin-left: 3%;
-<!--border: 1px solid black;-->
+margin-left: 27%;
 text-align: center;
-width: 20%;	
-position: fixed;
+width: 19%;	
 float: left;
 }
 
