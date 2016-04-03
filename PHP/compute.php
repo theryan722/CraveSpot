@@ -33,5 +33,16 @@ while ($key = current($choices)) {
 	}
 }
 
+<!-- Retrieving popular restaurants near the area (debatable)-->
+$client_id = "MZBXZQHK3HDVZXRJQN3GLZQ3FI5W2XNRUEYMUZIFYKQWUVN0"; 
+$client_secret = "3HPKD4GEX3O0H4QFDBK5M4THJSKDZFI24KKXHOKWE1PQAQYY";
+
+$json = file_get_contents("https://api.foursquare.com/v2/venues/explore
+  						  ?client_id=" . $client_id . 
+  						  "&client_secret=" . $client_secret . 
+						  "&v=20130815
+						  &ll=40.7,-74
+						  &query=" . $most_requested);
+
 
 ?>
