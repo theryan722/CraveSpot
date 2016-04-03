@@ -32,7 +32,9 @@ if ($choices > 0) {
 	<!-- Append and start writing in selections-->
 
 	while ($key = current($mydata)) {
-		fwrite($file, $mydata[$key]. "|");
+		if ($mydata[$key] != "empty") {
+			fwrite($file, $mydata[$key]. "|");
+		}
 		
 	}
 
