@@ -24,7 +24,7 @@ if ($choices > 0) {
 	$filename = $id . ".txt";
 
 	<!-- Replace the templateurl with the real url later-->
-	$abpath = "templateurl/engine/groups/" . $filename; 
+	$abpath = "ryanoday.com/hackathons/cravespot/engine/groups/" . $filename; 
 	
 	<!-- Opens/create a new file with $abpath -->
 	$file = fopen($abpath, "a+");
