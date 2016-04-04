@@ -1,3 +1,5 @@
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
 h1{
 color:#DB7272;
 font-size: 72px;
@@ -19,7 +21,6 @@ width: 50%;
 
 body {
 text-align: center;
-font-family: century gothic;
 background-image: url("subtle_dots.png");
 color: #525657;}
 
@@ -36,14 +37,14 @@ img:hover{
 opacity:0.8;}
 
 #descriptionbox{
-width: 27%;
+width: 25%;
 text-align: center;
 color: #525657;
 float: left;
 }
 
 #navbox {
-margin-left: 27%;
+margin-left: 28%;
 text-align: center;
 width: 19%;	
 float: left;
