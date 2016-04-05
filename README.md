@@ -9,7 +9,7 @@ The One stop solution to solving THE problem of the millennial age, "Where shoul
 Best PHP Hack
 
 # Devpost
-http://devpost.com/software/cravespot-qknhbd#updates
+http://devpost.com/software/cravespot-qknhbd
 
 # Website
 Visit the website [here](http://ryanoday.com/hackathons/cravespot/site/)
